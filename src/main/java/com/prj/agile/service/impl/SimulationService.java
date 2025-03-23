@@ -75,7 +75,10 @@ public class SimulationService {
             ProposalDTO proposalDTO = ProposalDTO.createProposalDTO(BudgetMapper.toDTO(budget));
             Proposal proposal = proposalService.saveProposal(proposalDTO);
 
-            List<Price> priceList = pricingService.calculatePremium(productDTO, BudgetMapper.toDTO(budget), ProposalMapper.toDTO(proposal));
+            List<Price> priceList = pricingService
+                    .calculatePremium(productDTO, BudgetMapper.toDTO(budget), ProposalMapper.toDTO(proposal));
+
+            // construir o simulation response agora
 
 
         } else {

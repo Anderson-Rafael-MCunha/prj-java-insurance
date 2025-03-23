@@ -7,6 +7,7 @@ import com.prj.agile.dto.ProposalDTO;
 import com.prj.agile.dto.response.ClientDTO;
 import com.prj.agile.entity.insurance.Price;
 import com.prj.agile.mapper.insurance.BudgetMapper;
+import com.prj.agile.mapper.insurance.PriceMapper;
 import com.prj.agile.repository.insurance.PriceRepository;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +54,13 @@ public class PricingService {
         PriceDTO silverPrice = calculateSilverPrice(priceDTO, budgetDTO, proposalDTO);
         PriceDTO goldPrice = calculateGoldPrice(priceDTO, budgetDTO, proposalDTO);
 
+        Price savedBronzePrice = priceRepository.save(PriceMapper.toEntity(bronzePrice));
+        Price savedSilverPrice = priceRepository.save(PriceMapper.toEntity(silverPrice));
+        Price savedGoldPrice = priceRepository.save(PriceMapper.toEntity(goldPrice));
 
+        priceList.add(savedBronzePrice);
+        priceList.add(savedSilverPrice);
+        priceList.add(savedGoldPrice);
 
         return priceList;
     }
