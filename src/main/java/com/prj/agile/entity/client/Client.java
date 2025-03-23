@@ -1,13 +1,13 @@
-package com.prj.agile.entity;
+package com.prj.agile.entity.client;
 
+import com.prj.agile.entity.insurance.Budget;
+import com.prj.agile.entity.insurance.Policy;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Getter
 @Setter
@@ -63,6 +63,12 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Phone> phones = new ArrayList<>();
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<Budget> budgets = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "beneficiarylist")
+    private Set<Policy> policies = new HashSet<>();
 
 
     public Client(String document, String name, Date birthDate, Date createdAt, Boolean pep, String email, String status, ClientType clientType, Address clientAddress) {

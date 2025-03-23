@@ -1,7 +1,7 @@
 package com.prj.agile.mapper;
 
 import com.prj.agile.dto.response.PhoneDTO;
-import com.prj.agile.entity.Phone;
+import com.prj.agile.entity.client.Phone;
 
 public class PhoneMapper {
 

@@ -1,6 +1,6 @@
 package com.prj.agile.repository;
 
-import com.prj.agile.entity.Address;
+import com.prj.agile.entity.client.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,10 +1,10 @@
 package com.prj.agile.mapper;
 
 import com.prj.agile.dto.response.ClientDTO;
-import com.prj.agile.entity.Address;
-import com.prj.agile.entity.Client;
-import com.prj.agile.entity.ClientType;
-import com.prj.agile.entity.Phone;
+import com.prj.agile.entity.client.Address;
+import com.prj.agile.entity.client.Client;
+import com.prj.agile.entity.client.ClientType;
+import com.prj.agile.entity.client.Phone;
 
 import java.util.List;
 import java.util.stream.Collectors;

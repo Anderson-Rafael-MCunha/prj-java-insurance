@@ -1,7 +1,7 @@
 package com.prj.agile.mapper;
 
 import com.prj.agile.dto.response.AddressDTO;
-import com.prj.agile.entity.Address;
+import com.prj.agile.entity.client.Address;
 
 public class AddressMapper {
 

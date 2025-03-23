@@ -1,4 +1,4 @@
-package com.prj.agile.entity;
+package com.prj.agile.entity.client;
 
 import jakarta.persistence.*;
 import lombok.Getter;

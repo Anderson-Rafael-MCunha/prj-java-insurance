@@ -1,7 +1,7 @@
 package com.prj.agile.mapper;
 
 import com.prj.agile.dto.response.ClientTypeDTO;
-import com.prj.agile.entity.ClientType;
+import com.prj.agile.entity.client.ClientType;
 
 public class ClientTypeMapper {
 
