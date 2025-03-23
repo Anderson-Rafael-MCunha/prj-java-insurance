@@ -35,7 +35,7 @@ public class InsuredService {
         this.phoneRepository = phoneRepository;
     }
 
-    public void persistInsuredData(ClientDTO clientDTO){
+    public Client persistInsuredData(ClientDTO clientDTO){
         try {
             ClientType clientType = clientTypeRepository.save(ClientTypeMapper.toEntity(clientDTO.getClientType()));
 
@@ -49,6 +49,8 @@ public class InsuredService {
                 phone.setClient(client);
                 phoneRepository.save(phone);
             }
+
+            return client;
         } catch (Exception e){
             throw new InsuredPersistenceException(e.getMessage());
         }

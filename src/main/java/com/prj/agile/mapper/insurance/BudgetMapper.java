@@ -15,7 +15,6 @@ public class BudgetMapper {
         dto.setInsuredValue(budget.getInsuredValue());
         dto.setClient(ClientMapper.toDTO(budget.getClient()));
         dto.setProduct(ProductMapper.toDTO(budget.getProduct()));
-        dto.setProposal(ProposalMapper.toDTO(budget.getProposal()));
         return dto;
     }
 

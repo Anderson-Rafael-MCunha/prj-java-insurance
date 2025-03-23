@@ -15,4 +15,11 @@ public class ProposalDTO {
     private BudgetDTO budget;
     private List<PriceDTO> priceList;
 
+    public static ProposalDTO createProposalDTO(BudgetDTO budgetDTO){
+        ProposalDTO proposalDTO = new ProposalDTO();
+        proposalDTO.setCreatedAt(new Date());
+        proposalDTO.setBudget(budgetDTO);
+        return proposalDTO;
+    }
+
 }

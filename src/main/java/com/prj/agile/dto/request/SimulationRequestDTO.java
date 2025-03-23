@@ -15,7 +15,7 @@ public class SimulationRequestDTO {
 
     private String clientDocument;
     private Integer accumulatedBonus;
-    private BigDecimal insuredValue;
+    private String insuredValue;
     private String product;
 
 }

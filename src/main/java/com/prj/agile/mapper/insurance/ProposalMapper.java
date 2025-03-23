@@ -23,8 +23,8 @@ public class ProposalMapper {
         return new Proposal(
                 dto.getCreatedAt(),
                 dto.getProposalEndDate(),
-                BudgetMapper.toEntity(dto.getBudget()),
-                Collections.singletonList(PriceMapper.toEntity((PriceDTO) dto.getPriceList()))
+                BudgetMapper.toEntity(dto.getBudget())
+                //,.singletonList(PriceMapper.toEntity((PriceDTO) dto.getPriceList()))
         );
     }
 }
