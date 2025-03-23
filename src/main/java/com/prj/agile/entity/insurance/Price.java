@@ -90,4 +90,26 @@ public class Price {
     @OneToOne(mappedBy = "price")
     private Policy policy;
 
+    public Price(String protocol, BigDecimal insuredValue, BigDecimal insuredIndex, BigDecimal baseValueAmount, BigDecimal clientRisk, Integer clientDiscount, BigDecimal productDiscount, BigDecimal clientDiscountAmount, BigDecimal costIndex, BigDecimal costAmout, BigDecimal coverageAddition, String coverageType, BigDecimal coverageAdditionAmount, BigDecimal clientRiskComponent, BigDecimal productProfitLossComponent, BigDecimal coverageComponent, BigDecimal insurancePremium, BigDecimal insuranceDeductibleIndex, BigDecimal insuranceDeductibleAmout, Proposal proposal) {
+        this.protocol = protocol;
+        this.insuredValue = insuredValue;
+        this.insuredIndex = insuredIndex;
+        this.baseValueAmount = baseValueAmount;
+        this.clientRisk = clientRisk;
+        this.clientDiscount = clientDiscount;
+        this.productDiscount = productDiscount;
+        this.clientDiscountAmount = clientDiscountAmount;
+        this.costIndex = costIndex;
+        this.costAmout = costAmout;
+        this.coverageAddition = coverageAddition;
+        this.coverageType = coverageType;
+        this.coverageAdditionAmount = coverageAdditionAmount;
+        this.clientRiskComponent = clientRiskComponent;
+        this.productProfitLossComponent = productProfitLossComponent;
+        this.coverageComponent = coverageComponent;
+        this.insurancePremium = insurancePremium;
+        this.insuranceDeductibleIndex = insuranceDeductibleIndex;
+        this.insuranceDeductibleAmout = insuranceDeductibleAmout;
+        this.proposal = proposal;
+    }
 }

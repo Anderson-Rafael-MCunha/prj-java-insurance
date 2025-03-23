@@ -43,7 +43,7 @@ public class Policy {
     private String insuranceCompany;
 
     @Column(name="susep_subscripton_id", columnDefinition = "INTEGER", nullable = false)
-    private Integer susepIntegerId;
+    private Integer susepSubscriptionId;
 
     @Column(name="additional_information", columnDefinition = "TEXT", nullable = false)
     private String additionalInformation;
@@ -63,5 +63,15 @@ public class Policy {
     )
     private Set<Client> beneficiarylist = new HashSet<>();
 
-
+    public Policy(Date initDate, Date endDate, String broker, String insuranceCompany, Integer susepSubscriptionId, String additionalInformation, String paymentCondition, Price price, Set<Client> beneficiarylist) {
+        this.initDate = initDate;
+        this.endDate = endDate;
+        this.broker = broker;
+        this.insuranceCompany = insuranceCompany;
+        this.susepSubscriptionId = susepSubscriptionId;
+        this.additionalInformation = additionalInformation;
+        this.paymentCondition = paymentCondition;
+        this.price = price;
+        this.beneficiarylist = beneficiarylist;
+    }
 }

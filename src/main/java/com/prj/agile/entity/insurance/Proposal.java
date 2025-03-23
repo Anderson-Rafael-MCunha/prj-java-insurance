@@ -41,5 +41,10 @@ public class Proposal {
     @OneToMany(mappedBy = "proposal", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Price> priceList = new ArrayList<>();
 
-
+    public Proposal(Date createdAt, Date proposalEndDate, Budget budget, List<Price> priceList) {
+        this.createdAt = createdAt;
+        this.proposalEndDate = proposalEndDate;
+        this.budget = budget;
+        this.priceList = priceList;
+    }
 }

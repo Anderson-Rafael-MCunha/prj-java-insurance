@@ -2,7 +2,9 @@ package com.prj.agile.entity.insurance;
 
 import com.prj.agile.entity.client.Client;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -10,6 +12,8 @@ import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Budget")
 @Table(name = "budget",
         schema= "insurance"
@@ -46,5 +50,11 @@ public class Budget {
     @OneToOne(mappedBy = "budget")
     private Proposal proposal;
 
-
+    public Budget(Product product, Client client, BigDecimal insuredValue, Integer accumulatedBonus, Date createdAt) {
+         this.product = product;
+         this.client = client;
+         this.insuredValue = insuredValue;
+         this.accumulatedBonus = accumulatedBonus;
+         this.createdAt = createdAt;
+    }
 }

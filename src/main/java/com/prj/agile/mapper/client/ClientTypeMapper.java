@@ -1,4 +1,4 @@
-package com.prj.agile.mapper;
+package com.prj.agile.mapper.client;
 
 import com.prj.agile.dto.response.ClientTypeDTO;
 import com.prj.agile.entity.client.ClientType;

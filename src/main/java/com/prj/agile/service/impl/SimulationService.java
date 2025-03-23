@@ -33,7 +33,6 @@ public class SimulationService {
 
 
     public String createSimulation(SimulationRequestDTO simulationRequestDTO){
-        // Valida cliente e salva no schema
         ClientDTO clientDTO = fetchClient(simulationRequestDTO.getClientDocument());
         if(clientDTO != null){
             insuredService.persistInsuredData(clientDTO);

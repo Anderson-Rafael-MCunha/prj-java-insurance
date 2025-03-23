@@ -1,11 +1,13 @@
-package com.prj.agile.mapper;
+package com.prj.agile.mapper.client;
 
 import com.prj.agile.dto.response.ClientDTO;
+import com.prj.agile.dto.response.PhoneDTO;
 import com.prj.agile.entity.client.Address;
 import com.prj.agile.entity.client.Client;
 import com.prj.agile.entity.client.ClientType;
 import com.prj.agile.entity.client.Phone;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,6 +42,22 @@ public class ClientMapper {
                 address
         );
         client.setPhones(phones);
+        return client;
+    }
+
+    public static Client toEntity(ClientDTO dto) {
+        Client client = new Client(
+                dto.getDocument(),
+                dto.getName(),
+                dto.getBirthDate(),
+                dto.getCreatedAt(),
+                dto.getPep(),
+                dto.getEmail(),
+                dto.getStatus(),
+                ClientTypeMapper.toEntity(dto.getClientType()),
+                AddressMapper.toEntity(dto.getClientAddress())
+        );
+        client.setPhones(Collections.singletonList(PhoneMapper.toEntity((PhoneDTO) dto.getPhones())));
         return client;
     }
 }

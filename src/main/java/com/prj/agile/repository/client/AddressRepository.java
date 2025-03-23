@@ -1,4 +1,4 @@
-package com.prj.agile.repository;
+package com.prj.agile.repository.client;
 
 import com.prj.agile.entity.client.Address;
 import org.springframework.data.jpa.repository.JpaRepository;

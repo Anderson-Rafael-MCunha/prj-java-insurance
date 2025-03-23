@@ -62,4 +62,15 @@ public class Product {
     private List<Budget> budgetList = new ArrayList<>();
 
 
+    public Product(String description, String susepIdentification, BigDecimal insuranceCoverage, BigDecimal insuredIndex, BigDecimal costIndex, BigDecimal coverageMultiplier, BigDecimal bonusDiscountMultiplier, BigDecimal insuranceDeductible, Date createdAt) {
+        this.description = description;
+        this.susepIdentification = susepIdentification;
+        this.insuranceCoverage = insuranceCoverage;
+        this.insuredIndex = insuredIndex;
+        this.costIndex = costIndex;
+        this.coverageMultiplier = coverageMultiplier;
+        this.bonusDiscountMultiplier = bonusDiscountMultiplier;
+        this.insuranceDeductible = insuranceDeductible;
+        this.createdAt = createdAt;
+    }
 }
