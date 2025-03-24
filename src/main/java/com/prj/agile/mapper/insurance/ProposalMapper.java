@@ -20,11 +20,12 @@ public class ProposalMapper {
     }
 
     public static Proposal toEntity(ProposalDTO dto) {
-        return new Proposal(
+        Proposal proposal = new Proposal(
                 dto.getCreatedAt(),
                 dto.getProposalEndDate(),
                 BudgetMapper.toEntity(dto.getBudget())
-                //,.singletonList(PriceMapper.toEntity((PriceDTO) dto.getPriceList()))
         );
+        proposal.setId(dto.getId());
+        return proposal;
     }
 }

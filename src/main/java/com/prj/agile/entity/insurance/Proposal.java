@@ -20,11 +20,11 @@ public class Proposal {
 
     @Id
     @SequenceGenerator(
-            name = "client_sequence",
-            sequenceName="client_sequence",
+            name = "proposal_sequence",
+            sequenceName="proposal_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "proposal_sequence")
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
@@ -34,7 +34,7 @@ public class Proposal {
     @Column(name="proposal_end_date", columnDefinition = "DATE", nullable = false)
     private Date proposalEndDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "proposal_budget_id")
     private Budget budget;
 

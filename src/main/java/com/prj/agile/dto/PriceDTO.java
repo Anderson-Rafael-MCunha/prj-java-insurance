@@ -2,13 +2,15 @@ package com.prj.agile.dto;
 
 import com.prj.agile.entity.insurance.Proposal;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@NoArgsConstructor
 @Getter
 @Setter
-public class PriceDTO {
+public class PriceDTO implements Cloneable {
 
     private Integer id;
 
@@ -25,7 +27,6 @@ public class PriceDTO {
     private BigDecimal costIndex;
     private BigDecimal costAmount;
     private BigDecimal productProfitLossComponent;
-    ;
 
     private BigDecimal coverageAddition;
     private String coverageType;
@@ -40,6 +41,15 @@ public class PriceDTO {
     private String protocol;
 
     private ProposalDTO proposal;
+
+    @Override
+    public PriceDTO clone() {
+        try {
+            return (PriceDTO) super.clone();
+        } catch (CloneNotSupportedException e) {
+            throw new RuntimeException("Erro ao clonar PriceDTO", e);
+        }
+    }
 
 }
 

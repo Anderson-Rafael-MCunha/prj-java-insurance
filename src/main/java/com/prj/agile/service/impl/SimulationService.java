@@ -66,7 +66,7 @@ public class SimulationService {
 
     public SimulationResponseDTO createSimulation(SimulationRequestDTO simulationRequestDTO){
 
-        try{
+        //try{
             ClientDTO clientDTO = fetchClient(simulationRequestDTO.getClientDocument());
 
             if(clientDTO != null){
@@ -83,15 +83,15 @@ public class SimulationService {
                 List<Price> priceList = pricingService
                         .calculatePremium(productDTO, BudgetMapper.toDTO(budget), ProposalMapper.toDTO(proposal));
 
-                return getSimulationResponse(priceList, proposalDTO);
+                return getSimulationResponse(priceList, ProposalMapper.toDTO(proposal));
             } else {
                 String e = "Cliente nao cadastrado. Acionar time de onboarding";
                 System.out.println(e);
                 throw new SimulationErrorException("Client avaliado nao possui cadastro");
             }
-        } catch (Exception e){
-            throw new SimulationErrorException("Excecao no calculo do premio e franquia do seguro");
-        }
+        //} catch (Exception e){
+        //    throw new SimulationErrorException("Excecao no calculo do premio e franquia do seguro");
+        //}
     }
 
 

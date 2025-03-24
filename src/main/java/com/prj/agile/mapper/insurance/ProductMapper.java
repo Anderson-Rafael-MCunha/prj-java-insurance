@@ -22,7 +22,7 @@ public class ProductMapper {
     }
 
     public static Product toEntity(ProductDTO dto) {
-        return new Product(
+        Product product = new Product(
                 dto.getDescription(),
                 dto.getSusepIdentification(),
                 dto.getInsuranceCoverage(),
@@ -33,6 +33,8 @@ public class ProductMapper {
                 dto.getInsuranceDeductible(),
                 dto.getCreatedAt()
         );
+        product.setId(dto.getId());
+        return product;
     }
 
 }

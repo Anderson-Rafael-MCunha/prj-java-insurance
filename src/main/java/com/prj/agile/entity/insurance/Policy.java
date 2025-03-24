@@ -22,11 +22,11 @@ public class Policy {
 
     @Id
     @SequenceGenerator(
-            name = "price_sequence",
-            sequenceName="price_sequence",
+            name = "policy_sequence",
+            sequenceName="policy_sequence",
             allocationSize = 1
     )
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "price_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "policy_sequence")
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 

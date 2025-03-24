@@ -137,55 +137,62 @@ public class PricingService {
         return protocol;
     }
 
+    public static BigDecimal calculateCoverageComponent(BigDecimal baseValue, BigDecimal multipleCoverage){
+        return baseValue.multiply(multipleCoverage);
+    }
+
 
     public PriceDTO calculateBronzePrice(PriceDTO basePrice, BudgetDTO budgetDTO, ProposalDTO proposalDTO){
+        PriceDTO newPrice = basePrice.clone();
 
         BigDecimal coverageMultiplier = BigDecimal.ONE;
-        basePrice.setCoverageType("BRONZE");
+        newPrice.setCoverageType("BRONZE");
 
         BigDecimal additionalValue = basePrice.getCoverageAddition().multiply(coverageMultiplier);
 
-        basePrice.setCoverageAdditionAmount(additionalValue);
-        basePrice.setCoverageComponent(additionalValue);
-        basePrice.setInsurancePremium(calculatePremium(basePrice));
-        basePrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(basePrice));
-        basePrice.setProtocol(generatePriceProtocol(basePrice, budgetDTO, proposalDTO));
+        newPrice.setCoverageAdditionAmount(calculateCoverageComponent(newPrice.getBaseValueAmount(), additionalValue));
+        newPrice.setCoverageComponent(newPrice.getCoverageAdditionAmount());
+        newPrice.setInsurancePremium(calculatePremium(newPrice));
+        newPrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(newPrice));
+        newPrice.setProtocol(generatePriceProtocol(newPrice, budgetDTO, proposalDTO));
 
-        return basePrice;
+        return newPrice;
 
     }
 
     public PriceDTO calculateSilverPrice(PriceDTO basePrice, BudgetDTO budgetDTO, ProposalDTO proposalDTO){
+        PriceDTO newPrice = basePrice.clone();
 
         BigDecimal coverageMultiplier = new BigDecimal("2");
-        basePrice.setCoverageType("SILVER");
+        newPrice.setCoverageType("SILVER");
 
         BigDecimal additionalValue = basePrice.getCoverageAddition().multiply(coverageMultiplier);
 
-        basePrice.setCoverageAdditionAmount(additionalValue);
-        basePrice.setCoverageComponent(additionalValue);
-        basePrice.setInsurancePremium(calculatePremium(basePrice));
-        basePrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(basePrice));
-        basePrice.setProtocol(generatePriceProtocol(basePrice, budgetDTO, proposalDTO));
+        newPrice.setCoverageAdditionAmount(calculateCoverageComponent(newPrice.getBaseValueAmount(), additionalValue));
+        newPrice.setCoverageComponent(newPrice.getCoverageAdditionAmount());
+        newPrice.setInsurancePremium(calculatePremium(newPrice));
+        newPrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(newPrice));
+        newPrice.setProtocol(generatePriceProtocol(newPrice, budgetDTO, proposalDTO));
 
-        return basePrice;
+        return newPrice;
 
     }
 
     public PriceDTO calculateGoldPrice(PriceDTO basePrice, BudgetDTO budgetDTO, ProposalDTO proposalDTO){
+        PriceDTO newPrice = basePrice.clone();
 
         BigDecimal coverageMultiplier = new BigDecimal("3");
-        basePrice.setCoverageType("GOLD");
+        newPrice.setCoverageType("GOLD");
 
         BigDecimal additionalValue = basePrice.getCoverageAddition().multiply(coverageMultiplier);
 
-        basePrice.setCoverageAdditionAmount(additionalValue);
-        basePrice.setCoverageComponent(additionalValue);
-        basePrice.setInsurancePremium(calculatePremium(basePrice));
-        basePrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(basePrice));
-        basePrice.setProtocol(generatePriceProtocol(basePrice, budgetDTO, proposalDTO));
+        newPrice.setCoverageAdditionAmount(calculateCoverageComponent(newPrice.getBaseValueAmount(), additionalValue));
+        newPrice.setCoverageComponent(newPrice.getCoverageAdditionAmount());
+        newPrice.setInsurancePremium(calculatePremium(newPrice));
+        newPrice.setInsuranceDeductibleAmount(calculateDeductibleAmount(newPrice));
+        newPrice.setProtocol(generatePriceProtocol(newPrice, budgetDTO, proposalDTO));
 
-        return basePrice;
+        return newPrice;
 
     }
 

@@ -9,6 +9,7 @@ import com.prj.agile.entity.client.Phone;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ClientMapper {
@@ -57,7 +58,14 @@ public class ClientMapper {
                 ClientTypeMapper.toEntity(dto.getClientType()),
                 AddressMapper.toEntity(dto.getClientAddress())
         );
-        client.setPhones(Collections.singletonList(PhoneMapper.toEntity((PhoneDTO) dto.getPhones())));
+        client.setId(dto.getId());
+        List<Phone> phones = Optional.ofNullable(dto.getPhones())
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(PhoneMapper::toEntity)
+                .collect(Collectors.toList());
+
+        client.setPhones(phones);
         return client;
     }
 }

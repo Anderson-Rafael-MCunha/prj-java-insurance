@@ -19,12 +19,14 @@ public class BudgetMapper {
     }
 
     public static Budget toEntity(BudgetDTO dto) {
-        return new Budget(
+        Budget budget =  new Budget(
                 ProductMapper.toEntity(dto.getProduct()),
                 ClientMapper.toEntity(dto.getClient()),
                 dto.getInsuredValue(),
                 dto.getAccumulatedBonus(),
                 dto.getCreatedAt()
         );
+        budget.setId(dto.getId());
+        return budget;
     }
 }

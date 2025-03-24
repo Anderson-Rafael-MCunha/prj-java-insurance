@@ -33,7 +33,7 @@ public class PriceMapper {
     }
 
     public static Price toEntity(PriceDTO dto) {
-        return new Price(
+        Price price =  new Price(
                 dto.getProtocol(),
                 dto.getInsuredValue(),
                 dto.getInsuredIndex(),
@@ -55,5 +55,7 @@ public class PriceMapper {
                 dto.getInsuranceDeductibleAmount(),
                 ProposalMapper.toEntity(dto.getProposal())
         );
+        price.setId(dto.getId());
+        return price;
     }
 }
