@@ -72,7 +72,9 @@ public class SimulationService {
             if(clientDTO != null){
 
                 ClientDTO savedClientDTO = ClientMapper.toDTO(insuredService.persistInsuredData(clientDTO));
+
                 productService.createGenericProduct();
+
                 Product product = productService.findProductByDescription(simulationRequestDTO.getProduct());
                 ProductDTO productDTO = ProductMapper.toDTO(product);
                 BudgetDTO budgetDTO = BudgetDTO.createBudgetDTO(savedClientDTO, productDTO, simulationRequestDTO);
