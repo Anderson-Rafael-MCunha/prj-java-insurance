@@ -24,7 +24,7 @@ public class InsuranceController {
     }
 
     @Operation(summary = "Realiza contratacao do seguro", description = "Esse endpoint realiza a contratacao do seguro e geracao da Apolice")
-    @PostMapping
+    @PostMapping("/contract")
     public ResponseEntity<InsuranceResponseDTO> contractInsurance(@RequestBody InsuranceRequestDTO insuranceRequestDTO) {
         try {
             InsuranceResponseDTO insuranceResponseDTO = insuranceService.createInsurance(insuranceRequestDTO);

@@ -28,7 +28,7 @@ public class SimulationController {
     }
 
     @Operation(summary = "Cria nova Simulacao do premio", description = "Esse endpoint simula valores para contratacao de um seguro")
-    @PostMapping
+    @PostMapping("/simulation")
     public ResponseEntity<SimulationResponseDTO> createSimulation(@RequestBody SimulationRequestDTO simulationRequestDTO) {
         try {
             SimulationResponseDTO simulationResponseDTO = simulationService.createSimulation(simulationRequestDTO);

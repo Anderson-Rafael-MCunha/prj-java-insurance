@@ -18,7 +18,7 @@ public class PriceMapper {
         dto.setProductDiscount(price.getProductDiscount());
         dto.setClientDiscountAmount(price.getClientDiscountAmount());
         dto.setCostIndex(price.getCostIndex());
-        dto.setCostAmout(price.getCostAmout());
+        dto.setCostAmount(price.getCostAmout());
         dto.setCoverageAddition(price.getCoverageAddition());
         dto.setCoverageType(price.getCoverageType());
         dto.setCoverageAdditionAmount(price.getCoverageAdditionAmount());
@@ -43,7 +43,7 @@ public class PriceMapper {
                 dto.getProductDiscount(),
                 dto.getClientDiscountAmount(),
                 dto.getCostIndex(),
-                dto.getCostAmout(),
+                dto.getCostAmount(),
                 dto.getCoverageAddition(),
                 dto.getCoverageType(),
                 dto.getCoverageAdditionAmount(),
