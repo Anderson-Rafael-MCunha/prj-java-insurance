@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+
+  postgres-compose:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "admin"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "/c/dev/postgres:/var/lib/postgresql/data"
