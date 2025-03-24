@@ -2,6 +2,9 @@ package com.prj.agile.dto;
 
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +20,16 @@ public class ProposalDTO {
 
     public static ProposalDTO createProposalDTO(BudgetDTO budgetDTO){
         ProposalDTO proposalDTO = new ProposalDTO();
-        proposalDTO.setCreatedAt(new Date());
+
+        Date today = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(today);
+        calendar.add(Calendar.DAY_OF_MONTH, 7);
+
+        Date datePlus7Days = calendar.getTime();
+
+        proposalDTO.setCreatedAt(today);
+        proposalDTO.setProposalEndDate(datePlus7Days);
         proposalDTO.setBudget(budgetDTO);
         return proposalDTO;
     }

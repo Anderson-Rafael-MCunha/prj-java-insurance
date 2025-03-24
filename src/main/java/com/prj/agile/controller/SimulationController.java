@@ -2,6 +2,7 @@ package com.prj.agile.controller;
 
 import com.prj.agile.dto.request.SimulationRequestDTO;
 import com.prj.agile.dto.response.ClientDTO;
+import com.prj.agile.dto.response.SimulationResponseDTO;
 import com.prj.agile.service.impl.SimulationService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,13 @@ public class SimulationController {
 
     @Operation(summary = "Cria nova Simulacao do premio", description = "Esse endpoint simula valores para contratacao de um seguro")
     @PostMapping
-    public ResponseEntity<String> createSimulation(@RequestBody SimulationRequestDTO simulationRequestDTO) {
-        simulationService.createSimulation(simulationRequestDTO);
-        return ResponseEntity.ok("ok");
+    public ResponseEntity<SimulationResponseDTO> createSimulation(@RequestBody SimulationRequestDTO simulationRequestDTO) {
+        try {
+            SimulationResponseDTO simulationResponseDTO = simulationService.createSimulation(simulationRequestDTO);
+            return ResponseEntity.ok(simulationResponseDTO);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

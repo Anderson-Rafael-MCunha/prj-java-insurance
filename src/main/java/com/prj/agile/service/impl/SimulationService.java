@@ -5,10 +5,13 @@ import com.prj.agile.dto.ProductDTO;
 import com.prj.agile.dto.ProposalDTO;
 import com.prj.agile.dto.request.SimulationRequestDTO;
 import com.prj.agile.dto.response.ClientDTO;
+import com.prj.agile.dto.response.PriceResponseDTO;
+import com.prj.agile.dto.response.SimulationResponseDTO;
 import com.prj.agile.entity.insurance.Budget;
 import com.prj.agile.entity.insurance.Price;
 import com.prj.agile.entity.insurance.Product;
 import com.prj.agile.entity.insurance.Proposal;
+import com.prj.agile.exception.SimulationErrorException;
 import com.prj.agile.mapper.client.ClientMapper;
 import com.prj.agile.mapper.insurance.BudgetMapper;
 import com.prj.agile.mapper.insurance.ProductMapper;
@@ -17,6 +20,7 @@ import com.prj.agile.service.RestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,39 +65,65 @@ public class SimulationService {
     }
 
 
-    public String createSimulation(SimulationRequestDTO simulationRequestDTO){
+    public SimulationResponseDTO createSimulation(SimulationRequestDTO simulationRequestDTO){
 
-        ClientDTO clientDTO = fetchClient(simulationRequestDTO.getClientDocument());
-        if(clientDTO != null){
+        try{
+            ClientDTO clientDTO = fetchClient(simulationRequestDTO.getClientDocument());
 
-            ClientDTO savedClientDTO = ClientMapper.toDTO(insuredService.persistInsuredData(clientDTO));
-            productService.createGenericProduct();
-            Product product = productService.findProductByDescription(simulationRequestDTO.getProduct());
-            ProductDTO productDTO = ProductMapper.toDTO(product);
-            BudgetDTO budgetDTO = BudgetDTO.createBudgetDTO(savedClientDTO, productDTO, simulationRequestDTO);
-            Budget budget = budgetService.saveBudget(budgetDTO);
-            ProposalDTO proposalDTO = ProposalDTO.createProposalDTO(BudgetMapper.toDTO(budget));
-            Proposal proposal = proposalService.saveProposal(proposalDTO);
+            if(clientDTO != null){
 
-            List<Price> priceList = pricingService
-                    .calculatePremium(productDTO, BudgetMapper.toDTO(budget), ProposalMapper.toDTO(proposal));
+                ClientDTO savedClientDTO = ClientMapper.toDTO(insuredService.persistInsuredData(clientDTO));
+                productService.createGenericProduct();
+                Product product = productService.findProductByDescription(simulationRequestDTO.getProduct());
+                ProductDTO productDTO = ProductMapper.toDTO(product);
+                BudgetDTO budgetDTO = BudgetDTO.createBudgetDTO(savedClientDTO, productDTO, simulationRequestDTO);
+                Budget budget = budgetService.saveBudget(budgetDTO);
+                ProposalDTO proposalDTO = ProposalDTO.createProposalDTO(BudgetMapper.toDTO(budget));
+                Proposal proposal = proposalService.saveProposal(proposalDTO);
 
-            // construir o simulation response agora
+                List<Price> priceList = pricingService
+                        .calculatePremium(productDTO, BudgetMapper.toDTO(budget), ProposalMapper.toDTO(proposal));
 
-
-        } else {
-            String e = "Cliente nao cadastrado. Acionar time de onboarding";
-            System.out.println(e);
-            return e;
+                return getSimulationResponse(priceList, proposalDTO);
+            } else {
+                String e = "Cliente nao cadastrado. Acionar time de onboarding";
+                System.out.println(e);
+                throw new SimulationErrorException("Client avaliado nao possui cadastro");
+            }
+        } catch (Exception e){
+            throw new SimulationErrorException("Excecao no calculo do premio e franquia do seguro");
         }
-        return "OK";
     }
 
 
+    public static SimulationResponseDTO getSimulationResponse(List<Price> priceList, ProposalDTO proposalDTO){
+        SimulationResponseDTO simulationResponseDTO = new SimulationResponseDTO();
 
+        simulationResponseDTO.setProposalId(proposalDTO.getId());
+        simulationResponseDTO.setProposalCreatedDate(proposalDTO.getCreatedAt());
+        simulationResponseDTO.setProposalEndDate(proposalDTO.getProposalEndDate());
 
+        List<PriceResponseDTO> priceResponseDTOList = getPriceResponseDTOS(priceList);
 
+        simulationResponseDTO.setPriceResponseList(priceResponseDTOList);
 
+        return simulationResponseDTO;
+
+    }
+
+    private static List<PriceResponseDTO> getPriceResponseDTOS(List<Price> priceList) {
+        List<PriceResponseDTO> priceResponseDTOList = new ArrayList<>();
+
+        for(Price price : priceList){
+            PriceResponseDTO priceResponseDTO = new PriceResponseDTO();
+            priceResponseDTO.setType(price.getCoverageType());
+            priceResponseDTO.setProtocol(price.getProtocol());
+            priceResponseDTO.setPremium(price.getInsurancePremium().toString());
+            priceResponseDTO.setDeductible(price.getInsuranceDeductibleAmout().toString());
+            priceResponseDTOList.add(priceResponseDTO);
+        }
+        return priceResponseDTOList;
+    }
 
 
 }
