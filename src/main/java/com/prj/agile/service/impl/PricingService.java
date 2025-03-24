@@ -6,6 +6,9 @@ import com.prj.agile.dto.ProductDTO;
 import com.prj.agile.dto.ProposalDTO;
 import com.prj.agile.dto.response.ClientDTO;
 import com.prj.agile.entity.insurance.Price;
+import com.prj.agile.entity.insurance.Product;
+import com.prj.agile.exception.PricingNotFoundException;
+import com.prj.agile.exception.ProductNotFoundException;
 import com.prj.agile.mapper.insurance.BudgetMapper;
 import com.prj.agile.mapper.insurance.PriceMapper;
 import com.prj.agile.repository.insurance.PriceRepository;
@@ -184,6 +187,12 @@ public class PricingService {
 
         return basePrice;
 
+    }
+
+
+    public Price findPriceByProtocol(String protocol) {
+        return priceRepository.findByProtocol(protocol)
+                .orElseThrow(() -> new PricingNotFoundException("Princing quote not found with protocol: " + protocol));
     }
 
 

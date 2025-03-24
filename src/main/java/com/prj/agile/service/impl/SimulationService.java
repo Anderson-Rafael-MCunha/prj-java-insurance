@@ -60,7 +60,6 @@ public class SimulationService {
             System.out.println(e.getMessage());
             return null;
         }
-        System.out.println(dto);
         return dto;
     }
 
