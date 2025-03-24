@@ -66,7 +66,7 @@ public class SimulationService {
 
     public SimulationResponseDTO createSimulation(SimulationRequestDTO simulationRequestDTO){
 
-        //try{
+        try{
             ClientDTO clientDTO = fetchClient(simulationRequestDTO.getClientDocument());
 
             if(clientDTO != null){
@@ -89,9 +89,9 @@ public class SimulationService {
                 System.out.println(e);
                 throw new SimulationErrorException("Client avaliado nao possui cadastro");
             }
-        //} catch (Exception e){
-        //    throw new SimulationErrorException("Excecao no calculo do premio e franquia do seguro");
-        //}
+        } catch (Exception e){
+            throw new SimulationErrorException("Excecao no calculo do premio e franquia do seguro");
+        }
     }
 
 

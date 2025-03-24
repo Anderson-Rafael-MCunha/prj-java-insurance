@@ -15,7 +15,6 @@ public class ProposalMapper {
         dto.setCreatedAt(proposal.getCreatedAt());
         dto.setProposalEndDate(proposal.getProposalEndDate());
         dto.setBudget(BudgetMapper.toDTO(proposal.getBudget()));
-        dto.setPriceList(proposal.getPriceList().stream().map(PriceMapper::toDTO).collect(Collectors.toList()));
         return dto;
     }
 

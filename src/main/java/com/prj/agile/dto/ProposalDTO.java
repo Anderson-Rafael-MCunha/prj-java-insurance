@@ -19,6 +19,7 @@ public class ProposalDTO {
     private List<PriceDTO> priceList;
 
     public static ProposalDTO createProposalDTO(BudgetDTO budgetDTO){
+
         ProposalDTO proposalDTO = new ProposalDTO();
 
         Date today = new Date();

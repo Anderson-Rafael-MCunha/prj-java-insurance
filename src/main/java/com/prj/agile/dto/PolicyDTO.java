@@ -20,7 +20,7 @@ public class PolicyDTO {
     private String insuranceCompany;
     private Integer susepSubscriptionId;
     private String additionalInformation;
-    private String paymentCondition;
+    private Integer paymentCondition;
     private PriceDTO price;
     private Set<ClientDTO> beneficiarylist;
 
@@ -44,7 +44,7 @@ public class PolicyDTO {
         policyDTO.setInsuranceCompany("Seguradora SA");
         policyDTO.setSusepSubscriptionId(100);
         policyDTO.setAdditionalInformation("Cobertura 90% do valor segurado");
-        policyDTO.setPaymentCondition(insuranceRequestDTO.getPaymentType().toString());
+        policyDTO.setPaymentCondition(insuranceRequestDTO.getPaymentType());
         policyDTO.setPrice(price);
         policyDTO.setBeneficiarylist(clientSet);
 

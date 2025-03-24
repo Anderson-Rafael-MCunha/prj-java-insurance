@@ -49,9 +49,9 @@ public class Policy {
     private String additionalInformation;
 
     @Column(name="payment_condition", columnDefinition = "INTEGER", nullable = false)
-    private String paymentCondition;
+    private Integer paymentCondition;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "policy_price_id")
     private Price price;
 
@@ -63,7 +63,7 @@ public class Policy {
     )
     private Set<Client> beneficiarylist = new HashSet<>();
 
-    public Policy(Date initDate, Date endDate, String broker, String insuranceCompany, Integer susepSubscriptionId, String additionalInformation, String paymentCondition, Price price, Set<Client> beneficiarylist) {
+    public Policy(Date initDate, Date endDate, String broker, String insuranceCompany, Integer susepSubscriptionId, String additionalInformation, Integer paymentCondition, Price price, Set<Client> beneficiarylist) {
         this.initDate = initDate;
         this.endDate = endDate;
         this.broker = broker;

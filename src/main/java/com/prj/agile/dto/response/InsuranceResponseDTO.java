@@ -23,7 +23,7 @@ public class InsuranceResponseDTO {
     private String insuranceCompany;
     private String susepSubscription;
     private String additionalInformation;
-    private String paymentCondition;
+    private Integer paymentCondition;
     private String premiumAmount;
     private String insuranceDeductibleAmount;
     private String coverageType;
